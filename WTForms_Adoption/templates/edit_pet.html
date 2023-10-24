@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pet</title>
+</head>
+<body>
+    
+<h1>Edit {{ pet.name }}</h1>
+
+<p><strong>Name:</strong> {{ pet.name }}</p>
+<p><strong>Species:</strong> {{ pet.species }}</p>
+{% if pet.photo_url %}
+<p><img src="{{ pet.photo_url }}" alt="{{ pet.name }}" width="100"></p>
+{% endif %}
+{% if pet.age is not none %} <!-- none allows 0 -->
+<p><strong>Age:</strong> {{ pet.age }}</p>
+{% endif %}
+
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.photo_url.label }}<br>
+        {{ form.photo_url() }}
+    </p>
+    <p>
+        {{ form.notes.label }}<br>
+        {{ form.notes() }}
+    </p>
+    <p>
+        {{ form.available.label }}<br>
+        {{ form.available() }}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+
+<a href="{{ url_for('home') }}">Back to Homepage</a>
+
+</body>
+</html>
